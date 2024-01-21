@@ -30,15 +30,7 @@ class HashMap {
             this.capacity++;
         } else {
             if (this.buckets[index].contains(key)) {
-                let current = this.buckets[index].head();
-                while (current) {
-                    if (current.key == key) {
-                        current.value = value;
-                        break;
-                    }
-                    current = current.next;
-
-                }
+                this.buckets[index].replace(key,value);
             } else {
                 this.buckets[index].append(key, value);
                 this.capacity++;

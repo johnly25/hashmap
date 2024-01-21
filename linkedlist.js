@@ -11,8 +11,8 @@ class LinkedList {
         this.root = null;
     }
 
-    append(key,value) {
-        let node = new Node(key,value);
+    append(key, value) {
+        let node = new Node(key, value);
         if (this.root == null) {
             this.root = node;
         } else {
@@ -25,7 +25,7 @@ class LinkedList {
     }
 
     prepend(key, value) {
-        let node = new Node(key,value);
+        let node = new Node(key, value);
         if (this.root == null) {
             this.root = node;
         } else {
@@ -65,35 +65,30 @@ class LinkedList {
             return current;
         }
     }
+
     remove(key) {
         let current = this.root;
-        if(current.key == key) {
+        if (current.key == key) {
             this.root = current.next;
         } else {
-            while(current.next) {
-                if(current.next.key == key) {
+            while (current.next) {
+                if (current.next.key == key) {
                     current.next = current.next.next;
                 }
-               current = current.next;
+                current = current.next;
             }
         }
     }
-
-    // at(index) returns the node at the given index
-    at(index) {
-        if (index > 0) {
-            return 'not valid number'
-        }
-        if (index > this.size() - 1) {
-            return 'index is bigger than size'
-        }
+    replace(key, value) {
         let current = this.root;
-        for (let i = 0; i <= index; i++) {
+        while (current) {
+            if (current.key == key) {
+                current.value = value;
+            }
+
             current = current.next;
         }
-        return current;
     }
-
     // pop removes the last element from the list
     pop() {
         let current = this.root;
@@ -127,35 +122,6 @@ class LinkedList {
         return null;
     }
 
-    // find(value) returns the index of the node containing value, or null if not found.
-    find(value) {
-        let current = this.root
-        let index = 0;
-        while (current.next) {
-            if(current.value == value) {
-                return index;
-            }
-            current = current.next;
-            index++;
-        }
-        return null;
-    }
-
-
-    // removeAt(index) that removes the node at the given index.
-    removeAt(index) {
-        if(index == 0) {
-            this.root = this.root.next
-        } else {
-            let current = this.root;
-            let currIndex = 0;
-            while(currIndex < index - 1) {
-                current = current.next;
-                currIndex++;
-            }
-            current.next = current.next.next;
-         }
-    }
 
     toString() {
         let current = this.root;
@@ -169,4 +135,4 @@ class LinkedList {
     }
 }
 
-export {LinkedList, Node};
+export { LinkedList, Node };
